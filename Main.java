@@ -1,14 +1,56 @@
+import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
 
-        // CRIANDO UM OBJETO (conta real)
-        ContaBancaria conta1 = new ContaBancaria("Henrique", 500);
+        Scanner sc = new Scanner(System.in);
 
-        conta1.mostrarSaldo();
+        // Criando a conta
+        System.out.print("Digite o nome do titular: ");
+        String nome = sc.nextLine();
 
-        conta1.depositar(200);
-        conta1.sacar(100);
+        ContaBancaria conta = new ContaBancaria(nome, 0);
 
-        conta1.mostrarSaldo();
+        int opcao;
+
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1 - Mostrar saldo");
+            System.out.println("2 - Depositar");
+            System.out.println("3 - Sacar");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma opção: ");
+
+            opcao = sc.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    conta.mostrarSaldo();
+                    break;
+
+                case 2:
+                    System.out.print("Digite o valor para depósito: ");
+                    double deposito = sc.nextDouble();
+                    conta.depositar(deposito);
+                    break;
+
+                case 3:
+                    System.out.print("Digite o valor para saque: ");
+                    double saque = sc.nextDouble();
+                    conta.sacar(saque);
+                    break;
+
+                case 0:
+                    System.out.println("Encerrando o programa...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+            }
+
+        } while (opcao != 0);
+
+        sc.close();
     }
 }
