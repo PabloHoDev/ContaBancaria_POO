@@ -2,25 +2,22 @@
 
 🧠 IDEIA DO PROJETO
 
-Uma Conta Bancária tem:
+**Uma Conta Bancária tem:**
 
-Titular
+*Titular*
+*Saldo*
 
-Saldo
+**Ela pode:**
 
-Ela pode:
+*Depositar*
+*Sacar*
+*Mostrar saldo*
 
-Depositar
-
-Sacar
-
-Mostrar saldo
-
-📌 Regra importante:
+📌 *Regra importante:**
 
 Ninguém pode mexer direto no saldo
 
-🔍 O QUE ESTÁ ACONTECENDO AQUI?
+🔍 **O QUE ESTÁ ACONTECENDO AQUI?**
 
 private → encapsulamento (proteção)
 
