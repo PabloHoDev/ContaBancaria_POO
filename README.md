@@ -1,4 +1,4 @@
-# ContaBancaria_POO
+# ContaBancaria
 
 🧠 IDEIA DO PROJETO
 
