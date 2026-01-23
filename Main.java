@@ -1,56 +1,95 @@
+import service.BancoService;
+import model.ContaBancaria;
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-
-        // Criando a conta
-        System.out.print("Digite o nome do titular: ");
-        String nome = sc.nextLine();
-
-        ContaBancaria conta = new ContaBancaria(nome, 0);
-
+        Scanner scanner = new Scanner(System.in);
+        BancoService banco = new BancoService();
         int opcao;
 
         do {
-            System.out.println("\n===== MENU =====");
-            System.out.println("1 - Mostrar saldo");
-            System.out.println("2 - Depositar");
-            System.out.println("3 - Sacar");
+            System.out.println("\n=== MENU BANCO ===");
+            System.out.println("1 - Criar conta");
+            System.out.println("2 - Listar contas");
+            System.out.println("3 - Depositar");
+            System.out.println("4 - Sacar");
+            System.out.println("5 - Remover conta");
             System.out.println("0 - Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha: ");
 
-            opcao = sc.nextInt();
+            opcao = scanner.nextInt();
+            scanner.nextLine(); // limpar buffer
 
             switch (opcao) {
+
                 case 1:
-                    conta.mostrarSaldo();
+                    System.out.print("Titular: ");
+                    String titular = scanner.nextLine();
+                    System.out.print("Saldo inicial: ");
+                    double saldo = scanner.nextDouble();
+                    banco.criarConta(titular, saldo);
+                    System.out.println("Conta criada com sucesso!");
                     break;
 
                 case 2:
-                    System.out.print("Digite o valor para depósito: ");
-                    double deposito = sc.nextDouble();
-                    conta.depositar(deposito);
+                    banco.listarContas();
                     break;
 
                 case 3:
-                    System.out.print("Digite o valor para saque: ");
-                    double saque = sc.nextDouble();
-                    conta.sacar(saque);
+                    System.out.print("Titular: ");
+                    titular = scanner.nextLine();
+                    ContaBancaria contaDep = banco.buscarConta(titular);
+                    if (contaDep != null) {
+                        System.out.print("Valor: ");
+                        double valor = scanner.nextDouble();
+                        if (contaDep.depositar(valor))
+                            System.out.println("Depósito realizado!");
+                        else
+                            System.out.println("Valor inválido.");
+                    } else {
+                        System.out.println("Conta não encontrada.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Titular: ");
+                    titular = scanner.nextLine();
+                    ContaBancaria contaSaq = banco.buscarConta(titular);
+                    if (contaSaq != null) {
+                        System.out.print("Valor: ");
+                        double valor = scanner.nextDouble();
+                        if (contaSaq.sacar(valor))
+                            System.out.println("Saque realizado!");
+                        else
+                            System.out.println("Saldo insuficiente.");
+                    } else {
+                        System.out.println("Conta não encontrada.");
+                    }
+                    break;
+
+                case 5:
+                    System.out.print("Titular: ");
+                    titular = scanner.nextLine();
+                    if (banco.removerConta(titular))
+                        System.out.println("Conta removida!");
+                    else
+                        System.out.println("Conta não encontrada.");
                     break;
 
                 case 0:
-                    System.out.println("Encerrando o programa...");
+                    System.out.println("Encerrando sistema...");
                     break;
 
                 default:
-                    System.out.println("Opção inválida!");
+                    System.out.println("Opção inválida.");
             }
 
         } while (opcao != 0);
 
-        sc.close();
+        scanner.close();
     }
 }
