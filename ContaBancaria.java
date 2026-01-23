@@ -1,36 +1,34 @@
 public class ContaBancaria {
 
-    // ATRIBUTOS (características)
     private String titular;
     private double saldo;
 
-    // CONSTRUTOR (nascimento do objeto)
     public ContaBancaria(String titular, double saldoInicial) {
         this.titular = titular;
         this.saldo = saldoInicial;
     }
 
-    // MÉTODOS (ações)
-    public void depositar(double valor) {
+    public String getTitular() {
+        return titular;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public boolean depositar(double valor) {
         if (valor > 0) {
             saldo += valor;
-            System.out.println("Depósito realizado com sucesso!");
-        } else {
-            System.out.println("Valor inválido para depósito.");
+            return true;
         }
+        return false;
     }
 
-    public void sacar(double valor) {
-        if (valor <= saldo && valor > 0) {
+    public boolean sacar(double valor) {
+        if (valor > 0 && valor <= saldo) {
             saldo -= valor;
-            System.out.println("Saque realizado com sucesso!");
-        } else {
-            System.out.println("Saldo insuficiente ou valor inválido.");
+            return true;
         }
-    }
-
-    public void mostrarSaldo() {
-        System.out.println("Titular: " + titular);
-        System.out.println("Saldo atual: R$ " + saldo);
+        return false;
     }
 }
