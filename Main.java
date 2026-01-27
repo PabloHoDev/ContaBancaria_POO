@@ -1,7 +1,6 @@
-import service.BancoService;
-import model.ContaBancaria;
-
 import java.util.Scanner;
+import model.ContaBancaria;
+import service.BancoService;
 
 public class Main {
 

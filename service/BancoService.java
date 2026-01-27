@@ -1,8 +1,8 @@
 package service;
 
-import model.ContaBancaria;
 import java.util.ArrayList;
 import java.util.List;
+import model.ContaBancaria;
 
 public class BancoService {
 
