@@ -10,6 +10,10 @@ public class ContaBancaria {
         this.saldo = saldoInicial;
     }
 
+    public void adicionarTransacao(Transacao transacao) {
+    historico.add(transacao);
+}
+
     public String getTitular() {
         return titular;
     }
